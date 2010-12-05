@@ -69,7 +69,7 @@ $(document).ready(function () {
       alert('Number cannot be blank');
       return false;
     }
-    if (!$('#call_name').val().match(/^\d\d\d\d\d\d\d\d\d\d$/)) {
+    if ($('#call_number').val().match(/^\d\d\d\d\d\d\d\d\d\d$/) == null) {
       alert('Number must be a valid 10 digit phone number');
       return false;
     }
