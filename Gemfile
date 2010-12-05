@@ -1,6 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
+gem 'rest-client'
+gem 'nokogiri'
 gem 'tropo-webapi-ruby'
 
 # Bundle edge Rails instead:
@@ -8,6 +10,7 @@ gem 'tropo-webapi-ruby'
 
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'ruby-debug19'
 end
 
 # Use unicorn as the web server
@@ -18,7 +21,6 @@ end
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
-# gem 'ruby-debug19'
 
 # Bundle the extra gems:
 # gem 'bj'
