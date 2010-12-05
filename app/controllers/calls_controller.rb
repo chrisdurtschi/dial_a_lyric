@@ -15,7 +15,7 @@ class CallsController < ApplicationController
     end
   end
 
-  def send
+  def initiate
     v = Tropo::Generator.parse request.env["rack.input"].read
     t = Tropo::Generator.new
 

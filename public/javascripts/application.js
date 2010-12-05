@@ -42,6 +42,24 @@ $(document).ready(function () {
     });
   });
 
+  $('.albums a').live('click', function (e) {
+    e.preventDefault();
+    var $link = $(this);
+    $.getJSON('/lyrics/search', {album_url: $link.attr('href')}, function (data) {
+      if (data.length == 0) {
+        alert('No data found for this album');
+      }
+      else {
+        var items = $.map(data, function (e, i) {
+          return '<option value="'+e.link+'">'+e.name+'</option>';
+        });
+        $('#call_lyric_url').html(items.join('\n'));
+        $('.albums').hide();
+        $('.songs').show();
+      }
+    });
+  });
+
   $form.submit(function () {
     if ($.trim($('#call_name').val()) == '') {
       alert('Name cannot be blank');
