@@ -81,11 +81,12 @@ protected
     doc = Nokogiri::HTML res.body
 
     lines = doc.at_css('p#songLyricsDiv').text.split("\n")
+    lines.map! do |line|
+      line.sub /\[ .* www\.songlyrics\.com \] /, ''
+    end
     lines.map!(&:strip)
     lines.reject!(&:blank?)
-    lines.map! do |line|
-      line.sub /\[ The .* are found on www.songlyrics.com \] /, ''
-    end
+
     self.body = lines.join("\n")
   end
 end
