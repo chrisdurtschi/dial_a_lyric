@@ -23,7 +23,7 @@ class CallsController < ApplicationController
     v = Tropo::Generator.parse request.env["rack.input"].read
     t = Tropo::Generator.new
 
-    call_id = v[:session][:call_id].to_i
+    call_id = v[:session][:parameters][:call_id].to_i
     call = Call.find(call_id)
 
     t.call :to => "tel:+1#{call.number}", :channel => 'VOICE', :required => true
