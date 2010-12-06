@@ -1,28 +1,28 @@
 <%= form_for @call do |f| %>
   <dl>
-    <dd><%= f.label :from_name, 'Your Name' %></dd>
-    <dt><%= f.text_field :from_name %></dt>
-    <dd><%= f.label :from_number, 'Your Number' %></dd>
-    <dt><%= f.text_field :from_number, :type => 'number', :min => 1111111111, :max => 9999999999 %></dt>
+    <dt><%= f.label :from_name, 'Your Name' %></dt>
+    <dd><%= f.text_field :from_name %></dd>
+    <dt><%= f.label :from_number, 'Your Number' %></dt>
+    <dd><%= f.text_field :from_number, :type => 'number', :min => 1111111111, :max => 9999999999 %></dd>
 
-    <dd><%= f.label :to_name, 'Their Name' %></dd>
-    <dt><%= f.text_field :to_name %></dt>
-    <dd><%= f.label :to_number, 'Their Number' %></dd>
-    <dt><%= f.text_field :to_number, :type => 'number', :min => 1111111111, :max => 9999999999 %></dt>
+    <dt><%= f.label :to_name, 'Their Name' %></dt>
+    <dd><%= f.text_field :to_name %></dd>
+    <dt><%= f.label :to_number, 'Their Number' %></dt>
+    <dd><%= f.text_field :to_number, :type => 'number', :min => 1111111111, :max => 9999999999 %></dd>
 
-    <dd class="search"><%= label_tag :artist_query, 'Search for an Artist' %></dd>
-    <dt class="search">
+    <dt class="search"><%= label_tag :artist_query, 'Search for an Artist' %></dt>
+    <dd class="search">
       <%= text_field_tag :artist_query %>
       <button class="search" type="button">Search</button>
-    </dt>
+    </dd>
 
-    <dd class="artists">Artists</dd>
-    <dt class="artists"></dt>
-    <dd class="albums">Albums</dd>
-    <dt class="albums"></dt>
-    <dd class="songs"><%= f.label :lyric_url, 'Songs' %></dd>
-    <dt class="songs"><%= f.select :lyric_url, [] %></dt>
+    <dt class="artists">Artists</dt>
+    <dd class="artists"></dd>
+    <dt class="albums">Albums</dt>
+    <dd class="albums"></dd>
+    <dt class="songs"><%= f.label :lyric_url, 'Songs' %></dt>
+    <dd class="songs"><%= f.select :lyric_url, [] %></dd>
 
-    <dt><%= f.submit 'Send Lyric' %>
+    <dd><%= f.submit 'Send Lyric' %></dd>
   </dl>
 <% end %>
