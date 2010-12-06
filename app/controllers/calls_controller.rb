@@ -29,6 +29,7 @@ class CallsController < ApplicationController
     t.call :to => "+1#{call.to_number}", :from => "+1#{call.from_number}", :channel => 'VOICE', :required => true
     t.say :value => "Hello #{call.to_name}"
     t.say :value => "#{call.from_name} thought you would like this song"
+    t.say :value => "The song is #{call.lyric.title} by #{call.lyric.artist} from the album #{call.lyric.album}"
     call.lyric.body.split("\n").each do |line|
       t.say :value => line
     end

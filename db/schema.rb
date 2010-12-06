@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101206023047) do
+ActiveRecord::Schema.define(:version => 20101206031302) do
 
   create_table "calls", :force => true do |t|
     t.string   "to_name"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(:version => 20101206023047) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
+    t.string   "artist"
+    t.string   "album"
   end
 
 end

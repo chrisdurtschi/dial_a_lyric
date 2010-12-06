@@ -1,9 +1,9 @@
 class Lyric < ActiveRecord::Base
   LYRIC_URL = "http://www.songlyrics.com"
 
-  validates_presence_of :url, :body
+  validates_presence_of :url, :title, :artist, :album, :body
 
-  before_validation :get_body
+  before_validation :parse_url
 
   def self.find_or_create(url)
     lyric = find_by_url(url)
@@ -75,10 +75,16 @@ class Lyric < ActiveRecord::Base
 
 protected
 
-  def get_body
+  def parse_url
     return if url.blank?
     res = RestClient.get url
     doc = Nokogiri::HTML res.body
+
+    details = []
+    doc.css('.album-details-container > .middle > code').each do |node|
+      details << node.text
+    end
+    self.title, self.artist, self.album = details
 
     lines = doc.at_css('p#songLyricsDiv').text.split("\n")
     lines.map! do |line|
@@ -86,7 +92,6 @@ protected
     end
     lines.map!(&:strip)
     lines.reject!(&:blank?)
-
     self.body = lines.join("\n")
   end
 end
