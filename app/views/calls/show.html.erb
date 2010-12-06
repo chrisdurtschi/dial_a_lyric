@@ -2,6 +2,6 @@
 
 <h1><%= @call.name %></h1>
 <h2><%= @call.number %></h2>
-<%= @call.lyric.body.split("\n").each do |line| %>
+<% @call.lyric.body.split("\n").each do |line| %>
   <p><%= line %></p>
 <% end %>
