@@ -15,6 +15,10 @@ class CallsController < ApplicationController
     end
   end
 
+  def show
+    @call = Call.find(params[:id])
+  end
+
   def initiate
     v = Tropo::Generator.parse request.env["rack.input"].read
     t = Tropo::Generator.new
