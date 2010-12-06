@@ -1,7 +1,7 @@
 <%= link_to 'Back', root_path %>
 
-<h1><%= @call.name %></h1>
-<h2><%= @call.number %></h2>
+<h1><%= @call.to_name %></h1>
+<h2><%= @call.to_number %></h2>
 <% @call.lyric.body.split("\n").each do |line| %>
   <p><%= line %></p>
 <% end %>

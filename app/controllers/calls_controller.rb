@@ -26,9 +26,9 @@ class CallsController < ApplicationController
     call_id = v[:session][:parameters][:call_id].to_i
     call = Call.find(call_id)
 
-    t.call :to => "tel:+1#{call.number}", :channel => 'VOICE', :required => true
-    t.say :value => "Hello #{call.name}"
-    t.say :value => "Somebody thought you would like this song"
+    t.call :to => "+1#{call.to_number}", :from => "+1#{call.from_number}", :channel => 'VOICE', :required => true
+    t.say :value => "Hello #{call.to_name}"
+    t.say :value => "#{call.from_name} thought you would like this song"
     call.lyric.body.split("\n").each do |line|
       t.say :value => line
     end

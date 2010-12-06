@@ -61,22 +61,33 @@ $(document).ready(function () {
   });
 
   $form.submit(function () {
-    if ($.trim($('#call_name').val()) == '') {
-      alert('Name cannot be blank');
-      return false;
+    var required = {
+      '#call_from_name': 'Your Name',
+      '#call_from_number': 'Your Number',
+      '#call_to_name': 'Their Name',
+      '#call_to_number': 'Their Number'
+    }, number = {
+      '#call_from_number': 'Your Number',
+      '#call_to_number': 'Their Number'
+    }, selector;
+
+    for (selector in required) {
+      if ($.trim($(selector).val()) == '') {
+        alert(required[selector]+' is required');
+        return false;
+      }
     }
-    if ($.trim($('#call_number').val()) == '') {
-      alert('Number cannot be blank');
-      return false;
-    }
-    if ($('#call_number').val().match(/^\d\d\d\d\d\d\d\d\d\d$/) == null) {
-      alert('Number must be a valid 10 digit phone number');
-      return false;
+    for (selector in number) {
+      if ($(selector).val().match(/^\d\d\d\d\d\d\d\d\d\d$/) == null) {
+        alert(number[selector]+' must be a valid 10 digit phone number');
+        return false;
+      }
     }
     if ($.trim($('#call_lyric_url').val()) == '') {
       alert('You must choose a song');
       return false;
     }
+    return result;
   });
 
   $form.fadeIn('medium');

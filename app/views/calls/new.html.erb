@@ -1,9 +1,14 @@
 <%= form_for @call do |f| %>
   <dl>
-    <dd><%= f.label :name %></dd>
-    <dt><%= f.text_field :name %></dt>
-    <dd><%= f.label :number %></dd>
-    <dt><%= f.text_field :number, :type => 'number', :min => 1111111111, :max => 9999999999 %></dt>
+    <dd><%= f.label :from_name, 'Your Name' %></dd>
+    <dt><%= f.text_field :from_name %></dt>
+    <dd><%= f.label :from_number, 'Your Number' %></dd>
+    <dt><%= f.text_field :from_number, :type => 'number', :min => 1111111111, :max => 9999999999 %></dt>
+
+    <dd><%= f.label :to_name, 'Their Name' %></dd>
+    <dt><%= f.text_field :to_name %></dt>
+    <dd><%= f.label :to_number, 'Their Number' %></dd>
+    <dt><%= f.text_field :to_number, :type => 'number', :min => 1111111111, :max => 9999999999 %></dt>
 
     <dd class="search"><%= label_tag :artist_query, 'Search for an Artist' %></dd>
     <dt class="search">

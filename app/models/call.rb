@@ -3,9 +3,9 @@ class Call < ActiveRecord::Base
 
   belongs_to :lyric
 
-  validates_presence_of :name, :number, :lyric
+  validates_presence_of :from_name, :from_number, :to_name, :to_number, :lyric
   validates_presence_of :lyric_url, :on => :create
-  validates_format_of :number, :with => /^\d\d\d\d\d\d\d\d\d\d$/, :message => "must be a 10 digit phone number"
+  validates_format_of :from_number, :to_number, :with => /^\d\d\d\d\d\d\d\d\d\d$/, :message => "must be a 10 digit phone number"
 
   before_validation :get_lyric
   after_create :create_tropo_session

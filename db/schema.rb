@@ -10,14 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101205225212) do
+ActiveRecord::Schema.define(:version => 20101206023047) do
 
   create_table "calls", :force => true do |t|
-    t.string   "name"
-    t.string   "number"
+    t.string   "to_name"
+    t.string   "to_number"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lyric_id"
+    t.string   "from_name"
+    t.string   "from_number"
   end
 
   create_table "lyrics", :force => true do |t|
