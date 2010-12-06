@@ -87,7 +87,6 @@ $(document).ready(function () {
       alert('You must choose a song');
       return false;
     }
-    return result;
   });
 
   $form.fadeIn('medium');
