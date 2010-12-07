@@ -30,7 +30,7 @@ class Lyric < ActiveRecord::Base
 
     artists = []
     doc.css('.inner-box-4-content > ul > li').each do |node|
-      name = node.text.strip
+      name = node.text.strip.sub(/ Lyrics$/, '')
       link = node.at('a')['href']
       artists << { name: name, link: link }
     end
@@ -52,7 +52,7 @@ class Lyric < ActiveRecord::Base
       end
 
       node.css('.inner-box-2-content > ol > li').each do |item|
-        name = item.text.strip
+        name = item.text.strip.sub(/ Lyrics$/, '')
         link = item.at('a')['href']
         current << { name: name, link: link }
       end
@@ -66,7 +66,7 @@ class Lyric < ActiveRecord::Base
 
     songs = []
     doc.css('.album-ringtones-box-top-content > ol > li').each do |node|
-      name = node.text.strip
+      name = node.text.strip.sub(/ Lyrics$/, '')
       link = node.at('a')['href']
       songs << { name: name, link: link }
     end
