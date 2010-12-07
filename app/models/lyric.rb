@@ -31,10 +31,10 @@ class Lyric < ActiveRecord::Base
     artists = []
     doc.css('.inner-box-4-content > ul > li').each do |node|
       name = node.text.strip.sub(/ Lyrics$/, '')
-      link = node.at('a')['href']
-      artists << { name: name, link: link }
+      url  = node.at('a')['href']
+      artists << { name: name, url: url }
     end
-    artists
+    { :artists => artists }
   end
 
   def self.get_artist(url)
@@ -53,11 +53,11 @@ class Lyric < ActiveRecord::Base
 
       node.css('.inner-box-2-content > ol > li').each do |item|
         name = item.text.strip.sub(/ Lyrics$/, '')
-        link = item.at('a')['href']
-        current << { name: name, link: link }
+        url  = item.at('a')['href']
+        current << { name: name, url: url }
       end
     end
-    {:albums => albums, :songs => songs}
+    { :albums => albums, :songs => songs }
   end
 
   def self.get_album(url)
@@ -67,10 +67,10 @@ class Lyric < ActiveRecord::Base
     songs = []
     doc.css('.album-ringtones-box-top-content > ol > li').each do |node|
       name = node.text.strip.sub(/ Lyrics$/, '')
-      link = node.at('a')['href']
-      songs << { name: name, link: link }
+      url  = node.at('a')['href']
+      songs << { name: name, url: url }
     end
-    songs
+    { :songs => songs }
   end
 
 protected

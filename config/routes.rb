@@ -5,5 +5,5 @@ DialALyric::Application.routes.draw do
   resources :lyrics do
     get 'search', :on => :collection
   end
-  root :to => "calls#new"
+  root :to => "lyrics#search"
 end

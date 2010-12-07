@@ -1,0 +1,58 @@
+<div data-role="page">
+  <% unless @search %>
+    <div data-role="header"><h1>Search for an Artist</h1></div>
+    <div data-role="content">
+      <%= form_tag search_lyrics_path, :method => :get do |f| %>
+        <div data-role="fieldcontain">
+          <label for="artist_query">Search for an Artist</label>
+          <%= search_field_tag :artist_query, '' %>
+          <button type="submit" data-theme="e">Search</button>
+        </div
+      <% end %>
+    </div>
+  <% else %>
+    <div data-role="header">
+      <h1>
+        <% if @search[:artists] %>
+          Pick an Artist
+        <% elsif @search[:albums] %>
+          Pick an Album or a Song
+        <% else %>
+          Pick a Song
+        <% end %>
+      </h1>
+    </div>
+    <div data-role="content">
+      <% if @search[:artists] %>
+        <div data-role="collapsible">
+          <h2>Artists</h2>
+          <ul data-role="listview" data-theme="g">
+            <% for artist in @search[:artists] %>
+              <li><%= link_to artist[:name], search_lyrics_path(:artist_url => artist[:url]) %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% else %>
+        <% if @search[:albums] %>
+          <div data-role="collapsible" data-collapsed="true">
+            <h2>Albums</h2>
+            <ul data-role="listview" data-theme="g">
+              <% for album in @search[:albums] %>
+                <li><%= link_to album[:name], search_lyrics_path(:album_url => album[:url]) %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div data-role="collapsible">
+          <h2>Songs</h2>
+          <ul data-role="listview" data-theme="g">
+            <% for song in @search[:songs] %>
+              <li><%= link_to song[:name], new_call_path(:call => { :lyric_url => song[:url] }) %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <div data-role="footer"><h6>Dial-a-Lyric</h6></div>
+</div>

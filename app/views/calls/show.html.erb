@@ -1,7 +1,14 @@
-<%= link_to 'Back', root_path %>
-
-<h1><%= @call.to_name %></h1>
-<h2><%= @call.to_number %></h2>
-<% @call.lyric.body.split("\n").each do |line| %>
-  <p><%= line %></p>
-<% end %>
+<div data-role="page">
+  <div data-role="header">
+    <%= link_to 'Start Over', root_path, 'data-role' => 'button' %>
+    <h1>Song Sent!</h1>
+  </div>
+  <div data-role="content">
+    <h1><%= @call.to_name %></h1>
+    <h2><%= @call.to_number %></h2>
+    <% @call.lyric.body.split("\n").each do |line| %>
+      <p><%= line %></p>
+    <% end %>
+  </div>
+  <div data-role="footer"><h6>Dial-a-Lyric</h6></div>
+</div>

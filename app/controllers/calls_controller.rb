@@ -1,11 +1,9 @@
 class CallsController < ApplicationController
   def new
-    @lyric = Lyric.new
-    @call  = Call.new
+    @call = Call.new(params[:call])
   end
 
   def create
-    @lyric = Lyric.new(params[:lyric])
     @call  = Call.new(params[:call])
     if @call.save
       flash[:notice] = "Call created"

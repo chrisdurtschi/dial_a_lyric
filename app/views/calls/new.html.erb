@@ -1,28 +1,37 @@
-<%= form_for @call do |f| %>
-  <dl>
-    <dt><%= f.label :from_name, 'Your Name' %></dt>
-    <dd><%= f.text_field :from_name %></dd>
-    <dt><%= f.label :from_number, 'Your Number' %></dt>
-    <dd><%= f.text_field :from_number, :type => 'number', :min => 1111111111, :max => 9999999999 %></dd>
+<div data-role="page">
+  <div data-role="header"><h1>Send to a Friend</h1></div>
+  <div data-role="content">
+    <% if @call.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+        <% @call.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= form_for @call do |f| %>
+      <div data-role="fieldcontain">
+        <%= f.label :from_name, 'Your Name' %>
+        <%= f.text_field :from_name %>
+      </div>
+      <div data-role="fieldcontain">
+        <%= f.label :from_number, 'Your Number' %>
+        <%= f.number_field :from_number, :min => 1111111111, :max => 9999999999 %>
+      </div>
+      <div data-role="fieldcontain">
+        <%= f.label :to_name, 'Their Name' %>
+        <%= f.text_field :to_name %>
+      </div>
+      <div data-role="fieldcontain">
+        <%= f.label :to_number, 'Their Number' %>
+        <%= f.number_field :to_number, :min => 1111111111, :max => 9999999999 %>
+      </div>
 
-    <dt><%= f.label :to_name, 'Their Name' %></dt>
-    <dd><%= f.text_field :to_name %></dd>
-    <dt><%= f.label :to_number, 'Their Number' %></dt>
-    <dd><%= f.text_field :to_number, :type => 'number', :min => 1111111111, :max => 9999999999 %></dd>
+      <%= f.hidden_field :lyric_url %>
 
-    <dt class="search"><%= label_tag :artist_query, 'Search for an Artist' %></dt>
-    <dd class="search">
-      <%= text_field_tag :artist_query %>
-      <button class="search" type="button">Search</button>
-    </dd>
-
-    <dt class="artists">Artists</dt>
-    <dd class="artists"></dd>
-    <dt class="albums">Albums</dt>
-    <dd class="albums"></dd>
-    <dt class="songs"><%= f.label :lyric_url, 'Songs' %></dt>
-    <dd class="songs"><%= f.select :lyric_url, [] %></dd>
-
-    <dd><%= f.submit 'Send Lyric' %></dd>
-  </dl>
-<% end %>
+      <button type="submit" data-theme="e">Send Lyric</button>
+    <% end %>
+  </div>
+  <div data-role="footer"><h6>Dial-a-Lyric</h6></div>
+</div>

@@ -2,19 +2,13 @@
 <html>
 <head>
   <title>DialALyric</title>
-  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css">
-  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssbase/base-min.css">
-  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssfonts/fonts-min.css">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css" />
   <%= stylesheet_link_tag :all %>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-  <%= javascript_include_tag :all %>
+  <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
   <%= csrf_meta_tag %>
-  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
 </head>
 <body>
-  <div class="notice"><%= flash[:notice] %></div>
-
   <%= yield %>
-
 </body>
 </html>
