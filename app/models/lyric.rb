@@ -53,8 +53,9 @@ class Lyric < ActiveRecord::Base
 
       node.css('.inner-box-2-content > ol > li').each do |item|
         name = item.text.strip.sub(/ Lyrics$/, '')
-        url  = item.at('a')['href']
-        current << { name: name, url: url }
+        a    = item.at('a')
+        url  = a['href'] if a
+        current << { name: name, url: url } if url
       end
     end
     { :albums => albums, :songs => songs }
