@@ -25,11 +25,11 @@ class CallsController < ApplicationController
     call = Call.find(call_id)
 
     t.call :to => "+1#{call.to_number}", :from => "+1#{call.from_number}", :channel => 'VOICE', :required => true
-    t.say :value => "Hello #{call.to_name}"
-    t.say :value => "#{call.from_name} thought you would like this song"
-    t.say :value => "The song is #{call.lyric.title} by #{call.lyric.artist} from the album #{call.lyric.album}"
+    t.say :value => "Hello #{call.to_name}", :voice => call.voice
+    t.say :value => "#{call.from_name} thought you would like this song", :voice => call.voice
+    t.say :value => "The song is #{call.lyric.title} by #{call.lyric.artist} from the album #{call.lyric.album}", :voice => call.voice
     call.lyric.body.split("\n").each do |line|
-      t.say :value => line
+      t.say :value => line, :voice => call.voice
     end
 
     respond_to do |format|
