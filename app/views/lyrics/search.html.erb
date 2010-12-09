@@ -13,9 +13,9 @@
   <% else %>
     <div data-role="header">
       <h1>
-        <% if @search[:artists] %>
+        <% if @search[:artists].present? %>
           Pick an Artist
-        <% elsif @search[:albums] %>
+        <% elsif @search[:albums].present? %>
           Pick an Album or a Song
         <% else %>
           Pick a Song
@@ -23,7 +23,7 @@
       </h1>
     </div>
     <div data-role="content">
-      <% if @search[:artists] %>
+      <% if @search[:artists].present? %>
         <div data-role="collapsible">
           <h2>Artists</h2>
           <ul data-role="listview" data-theme="g">
@@ -33,7 +33,7 @@
           </ul>
         </div>
       <% else %>
-        <% if @search[:albums] %>
+        <% if @search[:albums].present? %>
           <div data-role="collapsible" data-collapsed="true">
             <h2>Albums</h2>
             <ul data-role="listview" data-theme="g">
