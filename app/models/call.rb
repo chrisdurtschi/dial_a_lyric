@@ -3,13 +3,34 @@ class Call < ActiveRecord::Base
 
   belongs_to :lyric
 
-  validates_presence_of :from_name, :from_number, :to_name, :to_number, :lyric
+  validates_presence_of :from_name, :from_number, :to_name, :to_number, :voice, :lyric
   validates_presence_of :lyric_url, :on => :create
   validates_format_of :from_number, :to_number, :with => /^\d\d\d\d\d\d\d\d\d\d$/, :message => "must be a 10 digit phone number", :allow_blank => true
 
   before_validation :get_lyric
   before_validation :strip_numbers
   after_create :create_tropo_session
+
+  VOICES = [
+    ['US English - Female', 'allison'],
+    ['US English - Male', 'dave'],
+    ['British English - Female', 'kate'],
+    ['British English - Male', 'simon'],
+    ['Castilian Spanish - Female', 'carmen'],
+    ['Castilian Spanish - Male', 'jorge'],
+    ['Mexican Spanish - Female', 'soledad'],
+    ['Mexican Spanish - Male', 'carlos'],
+    ['French - Female', 'florence'],
+    ['French - Male', 'bernard'],
+    ['German - Female', 'katrin'],
+    ['German - Male', 'stefan'],
+    ['Italian - Female', 'paola'],
+    ['Italian - Male', 'luca'],
+    ['Dutch - Female', 'saskia'],
+    ['Dutch - Male', 'willem'],
+    ['Polish - Female', 'zosia'],
+    ['Polish - Male', 'krzysztof']
+  ]
 
 protected
 

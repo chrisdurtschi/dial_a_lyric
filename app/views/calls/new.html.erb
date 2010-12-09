@@ -27,6 +27,10 @@
         <%= f.label :to_number, 'Their Number' %>
         <%= f.number_field :to_number, :min => 1111111111, :max => 9999999999 %>
       </div>
+      <div data-role"fieldcontain">
+        <%= f.label :voice, 'Pick a Voice' %>
+        <%= f.select :voice, Call::VOICES %>
+      </div>
 
       <%= f.hidden_field :lyric_url %>
 
