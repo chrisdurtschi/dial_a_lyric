@@ -30,7 +30,7 @@ class Lyric < ActiveRecord::Base
 
     artists = []
     doc.css('.inner-box-4-content > ul > li').each do |node|
-      name = node.text.strip.sub(/ Lyrics$/, '')
+      name = node.text.toutf8.strip.sub(/ Lyrics$/, '')
       url  = node.at('a')['href']
       artists << { name: name, url: url }
     end
@@ -44,7 +44,7 @@ class Lyric < ActiveRecord::Base
     albums = []
     songs  = []
     doc.css('.inner-box-2').each do |node|
-      case node.at_css('.inner-box-2-title').text.strip
+      case node.at_css('.inner-box-2-title').text.toutf8.strip
       when 'Albums'
         current = albums
       when 'Songs'
@@ -52,7 +52,7 @@ class Lyric < ActiveRecord::Base
       end
 
       node.css('.inner-box-2-content > ol > li').each do |item|
-        name = item.text.strip.sub(/ Lyrics$/, '')
+        name = item.text.toutf8.strip.sub(/ Lyrics$/, '')
         a    = item.at('a')
         url  = a ? a['href'] : nil
         current << { name: name, url: url } if url
@@ -67,7 +67,7 @@ class Lyric < ActiveRecord::Base
 
     songs = []
     doc.css('.album-ringtones-box-top-content > ol > li').each do |node|
-      name = node.text.strip.sub(/ Lyrics$/, '')
+      name = node.text.toutf8.strip.sub(/ Lyrics$/, '')
       url  = node.at('a')['href']
       songs << { name: name, url: url }
     end
@@ -83,11 +83,11 @@ protected
 
     details = []
     doc.css('.album-details-container > .middle > code').each do |node|
-      details << node.text
+      details << node.text.toutf8
     end
     self.title, self.artist, self.album = details
 
-    lines = doc.at_css('p#songLyricsDiv').text.split("\n")
+    lines = doc.at_css('p#songLyricsDiv').text.toutf8.split("\n")
     lines.map! do |line|
       line.sub /\[ .* www\.songlyrics\.com \] /, ''
     end
