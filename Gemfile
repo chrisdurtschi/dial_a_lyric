@@ -13,6 +13,23 @@ group :development do
   gem 'ruby-debug19'
 end
 
+group :test, :development do
+  gem 'rspec-rails', '~>2.0.0'
+end
+
+group :test do
+  gem 'autotest'
+  gem 'webmock', '~> 1.6.1'
+end
+
+if RUBY_PLATFORM =~ /darwin/
+  group :test do
+    gem 'autotest-fsevent'
+    gem 'autotest-growl'
+  end
+end
+
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
