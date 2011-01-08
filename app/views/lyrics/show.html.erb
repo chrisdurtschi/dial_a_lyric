@@ -1,13 +1,12 @@
 <div data-role="page">
-  <div data-role="header">
-    <h1><%= @lyric.title %></h1>
-  </div>
+  <%= render :partial => "shared/header" %>
   <div data-role="content">
-    <h1><%= @lyric.artist %></h1>
+    <h1><%= @lyric.title %></h1>
+    <h2><%= @lyric.artist %></h2>
     <h2><%= @lyric.album %></h2>
     <% @lyric.body.split("\n").each do |line| %>
       <p><%= line %></p>
     <% end %>
   </div>
-  <div data-role="footer"><h6>Dial-a-Lyric</h6></div>
+  <%= render :partial => "shared/footer" %>
 </div>

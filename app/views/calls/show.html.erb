@@ -1,14 +1,13 @@
 <div data-role="page">
-  <div data-role="header">
-    <%= link_to 'Start Over', root_path, 'data-role' => 'button', 'rel' => 'external' %>
-    <h1>Song Sent!</h1>
-  </div>
+  <%= render :partial => "shared/header", :locals => {:link => link_to('Start Over', root_path, 'data-role' => 'button', 'rel' => 'external')} %>
   <div data-role="content">
-    <h1><%= @call.to_name %></h1>
+    <h1>Song Sent!</h1>
+    <h2><%= @call.to_name %></h2>
     <h2><%= @call.to_number %></h2>
+    <h3>"<%= @call.lyric.title %>" by <%= @call.lyric.artist %></h3>
     <% @call.lyric.body.split("\n").each do |line| %>
       <p><%= line %></p>
     <% end %>
   </div>
-  <div data-role="footer"><h6>Dial-a-Lyric</h6></div>
+  <%= render :partial => "shared/footer" %>
 </div>

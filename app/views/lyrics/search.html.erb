@@ -1,6 +1,6 @@
 <div data-role="page">
+  <%= render :partial => "shared/header" %>
   <% unless @search %>
-    <div data-role="header"><h1>Search for an Artist</h1></div>
     <div data-role="content">
       <%= form_tag search_lyrics_path, :method => :get do |f| %>
         <div data-role="fieldcontain">
@@ -11,7 +11,7 @@
       <% end %>
     </div>
   <% else %>
-    <div data-role="header">
+    <div data-role="content">
       <h1>
         <% if @search[:artists].present? %>
           Pick an Artist
@@ -21,8 +21,7 @@
           Pick a Song
         <% end %>
       </h1>
-    </div>
-    <div data-role="content">
+
       <% if @search[:artists].present? %>
         <div data-role="collapsible">
           <h2>Artists</h2>
@@ -54,5 +53,5 @@
       <% end %>
     </div>
   <% end %>
-  <div data-role="footer"><h6>Dial-a-Lyric</h6></div>
+  <%= render :partial => "shared/footer" %>
 </div>
