@@ -13,14 +13,28 @@ class Lyric < ActiveRecord::Base
     lyric
   end
 
-  def self.search(params)
-    if params[:artist_query]
-      search_for_artist params[:artist_query]
-    elsif params[:artist_url]
-      get_artist params[:artist_url]
-    elsif params[:album_url]
-      get_album params[:album_url]
+  def self.search(query)
+    return unless query
+    url = "#{LYRIC_URL}/index.php"
+    res = RestClient.get url, :params => {
+      :section => 'search',
+      :searchW => query,
+      :searchIn1 => 'artist',
+      :searchIn2 => 'album',
+      :searchIn3 => 'song',
+      :searchIn4 => 'lyrics'
+    }
+    doc = Nokogiri::HTML res.body
+
+    songs = []
+    doc.css('div.serpresult').each do |node|
+      artist = node.at('h3 a').content
+      name   = node.at('div.serpdesc-2 a:first').content.sub('Song: ', '')
+      album  = node.at('div.serpdesc-2 a:last').content.sub('Album: ', '')
+      url    = node.at('div.serpdesc-2 a:first')['href']
+      songs << { artist: artist, name: name, album: album, url: url }
     end
+    { songs: songs }
   end
 
   def self.search_for_artist(query)
@@ -81,11 +95,9 @@ protected
     res = RestClient.get url
     doc = Nokogiri::HTML res.body
 
-    details = []
-    doc.css('.album-details-container > .middle > code').each do |node|
-      details << node.text.toutf8
-    end
-    self.title, self.artist, self.album = details
+    self.artist = doc.at('div.colone-thin > div.box-details > h3 > a').content
+    self.title  = doc.at('div.albummast > h1').content.sub("#{artist} - ", '').sub(' Lyrics', '')
+    self.album  = doc.at('div.albummast > h4 > a').content.sub(' Album Lyrics', '')
 
     lines = doc.at_css('p#songLyricsDiv').text.toutf8.split("\n")
     lines.map! do |line|

@@ -1,6 +1,6 @@
 class LyricsController < ApplicationController
   def search
-    @search = Lyric.search(params)
+    @search = Lyric.search(params[:query])
   end
 
   def show

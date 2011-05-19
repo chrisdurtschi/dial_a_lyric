@@ -4,8 +4,8 @@
     <div data-role="content">
       <%= form_tag search_lyrics_path, :method => :get do |f| %>
         <div data-role="fieldcontain">
-          <label for="artist_query">Search for an Artist</label>
-          <%= search_field_tag :artist_query, '' %>
+          <label for="query">Search for Lyrics</label>
+          <%= search_field_tag :query, '' %>
         </div
         <button type="submit" data-theme="e">Search</button>
       <% end %>
@@ -46,7 +46,7 @@
           <h2>Songs</h2>
           <ul data-role="listview" data-theme="g">
             <% for song in @search[:songs] %>
-              <li><%= link_to song[:name], new_call_path(:call => { :lyric_url => song[:url] }) %></li>
+              <li><%= link_to "Song: #{song[:name]}<br>Artist: #{song[:artist]}".html_safe, new_call_path(:call => { :lyric_url => song[:url] }) %></li>
             <% end %>
           </ul>
         </div>
