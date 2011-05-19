@@ -23,13 +23,6 @@ group :test do
   gem 'webmock', '~> 1.6.1'
 end
 
-if RUBY_PLATFORM =~ /darwin/
-  group :test do
-    gem 'autotest-fsevent'
-    gem 'autotest-growl'
-  end
-end
-
 
 # Use unicorn as the web server
 # gem 'unicorn'
