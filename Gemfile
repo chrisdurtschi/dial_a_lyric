@@ -11,6 +11,7 @@ gem 'tropo-webapi-ruby'
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'ruby-debug19'
+  gem 'heroku'
 end
 
 group :test, :development do
