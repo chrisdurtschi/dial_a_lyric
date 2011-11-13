@@ -95,9 +95,9 @@ protected
     res = RestClient.get url
     doc = Nokogiri::HTML res.body
 
-    self.artist = doc.at('div.colone-thin > div.box-details > h3 > a').content
-    self.title  = doc.at('div.albummast > h1').content.sub("#{artist} - ", '').sub(' Lyrics', '')
-    self.album  = doc.at('div.albummast > h4 > a').content.sub(' Album Lyrics', '')
+    self.artist = doc.at('div.pagetitle p:first a').content
+    self.title  = doc.at('div.pagetitle h1').content.sub("#{artist} - ", '').sub(' Lyrics', '')
+    self.album  = doc.at('div.pagetitle p:last a').content.sub(' Album Lyrics', '')
 
     lines = doc.at_css('p#songLyricsDiv').text.toutf8.split("\n")
     lines.map! do |line|
