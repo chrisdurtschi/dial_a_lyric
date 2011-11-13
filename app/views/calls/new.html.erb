@@ -17,12 +17,20 @@
         <%= f.text_field :from_name %>
       </div>
       <div data-role="fieldcontain">
+        <%= f.label :from_number_country_prefix, 'Your Country Prefix' %>
+        <%= f.select :from_number_country_prefix, ["+1", "+91"] %>
+      </div>
+      <div data-role="fieldcontain">
         <%= f.label :from_number, 'Your Number' %>
         <%= f.number_field :from_number, :min => 1111111111, :max => 9999999999 %>
       </div>
       <div data-role="fieldcontain">
         <%= f.label :to_name, 'Their Name' %>
         <%= f.text_field :to_name %>
+      </div>
+      <div data-role="fieldcontain">
+        <%= f.label :to_number_country_prefix, 'Their Country Prefix' %>
+        <%= f.select :to_number_country_prefix, ["+1", "+91"] %>
       </div>
       <div data-role="fieldcontain">
         <%= f.label :to_number, 'Their Number' %>

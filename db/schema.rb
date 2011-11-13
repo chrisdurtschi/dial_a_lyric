@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101209014500) do
+ActiveRecord::Schema.define(:version => 20111113063603) do
 
   create_table "calls", :force => true do |t|
     t.string   "to_name"
@@ -20,7 +20,9 @@ ActiveRecord::Schema.define(:version => 20101209014500) do
     t.integer  "lyric_id"
     t.string   "from_name"
     t.string   "from_number"
-    t.string   "voice",       :default => "allison"
+    t.string   "voice",                      :default => "allison"
+    t.string   "from_number_country_prefix"
+    t.string   "to_number_country_prefix"
   end
 
   create_table "lyrics", :force => true do |t|
