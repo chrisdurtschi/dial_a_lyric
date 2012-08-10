@@ -28,10 +28,10 @@ class Lyric < ActiveRecord::Base
 
     songs = []
     doc.css('div.serpresult').each do |node|
-      artist = node.at('h3 a').content
-      name   = node.at('div.serpdesc-2 a:first').content.sub('Song: ', '')
-      album  = node.at('div.serpdesc-2 a:last').content.sub('Album: ', '')
-      url    = node.at('div.serpdesc-2 a:first')['href']
+      artist = node.at('div.serpdesc-2 p:first a:first').content
+      name   = node.at('h3 a').content.sub(/ Lyrics$/, '')
+      album  = node.at('div.serpdesc-2 p:first a:last').content
+      url    = node.at('h3 a')['href']
       songs << { artist: artist, name: name, album: album, url: url }
     end
     { songs: songs }
